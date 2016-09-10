@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd"
+	default-init-method="init" 
+	default-destroy-method="destory" >
+
+<!-- 声明组件[POJO对象]，管理之间的[引用、装配]关系 -->
+
+	<bean id="now" class="java.util.Date" scope="prototype" />
+
+
+	<bean id="ms1" class="com.ljheee.spring.di.MessageService" >
+		<!-- 指定通过构造方法注入；将“hello”传给构造方法的message参数 -->
+		<constructor-arg name="message" value="hello Spring DI" />
+		<constructor-arg name="time" ref="now" />
+		<constructor-arg name="info" >
+				<set>
+					<value>a</value>				
+					<value>b</value>				
+					<value>c</value>				
+				</set>
+		 </constructor-arg>
+	</bean>
+
+
+	<bean id="ms2" class="com.ljheee.spring.di.MessageService"  scope="prototype">
+		<!-- 指定通过构造方法注入；将“hello”传给构造方法的message参数 -->
+		<constructor-arg name="message" value="hello" />
+		<constructor-arg name="time" ref="now" />
+		
+		
+	</bean>
+	
+
+
+</beans>
